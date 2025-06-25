@@ -1,0 +1,135 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  text-align: center; /* ✅ 让标题与按钮居中 */
+}
+
+/* 1. ✅ 让 resume-header 居中显示 */
+.resume-header {
+  background-color: #1e3a8a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ✅ 横向居中内容 */
+  padding: 5px 30px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+  animation: slideUpFadeIn 1s ease-out;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-right: 20px;
+}
+
+.info h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.info .title {
+  font-size: 20px;
+  margin-top: 4px;
+}
+
+.info .motto {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: underline;
+  color: red;
+}
+
+.info .contact {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+/* 2. ✅ 表单区域左对齐 */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto; /* ✅ 表单整体居中 */
+  text-align: left; /* ✅ 表单字段左对齐 */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+}
+
+.form-group label {
+  width: 100px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 3. ✅ 按钮样式调整 */
+button {
+  margin: 20px auto 0;
+  padding: 6px 50px;
+  font-size: 16px;
+  background-color: #facc15;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block; /* ✅ 让按钮居中 */
+}
+
+button:hover {
+  background-color: #eab308;
+}
+/* 预览页面 */
+.preview {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #fff;
+}
+.resume-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;  /* 重要：确保是横向 */
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.label {
+  width: 120px;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+}
+
+.value {
+  flex: 1;
+  color: #444;
+  word-break: break-word;
+}
+
