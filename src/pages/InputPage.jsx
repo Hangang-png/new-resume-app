@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
+// src/InputPage.jsx
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+// ← 这里改成相对于 src 的路径
+import AvatarUploader from '../components/AvatarUploader';
+
 
 const InputPage = () => {
   const [formData, setFormData] = useState(() => {
@@ -41,12 +45,19 @@ const InputPage = () => {
   return (
     <div className="container">
       <div className="resume-header">
-        <img src="/photo.jpg" alt="头像" className="avatar" />
+        
+      <AvatarUploader
+        avatar={formData.avatar}
+        onAvatarChange={(base64) =>
+          setFormData((prev) => ({ ...prev, avatar: base64 }))
+        }
+      />
+
         <div className="info">
           <h2>Maria Rossi</h2>
           <p className="title">.NET 工程师</p>
           <p className="motto">格言：永远向前</p>
-          <p className="contact">📍 多伦多 &nbsp;&nbsp;&nbsp; ☎ 437-477-6689</p>
+          <p className="contact">📍 多伦多 &nbsp;&nbsp;&nbsp; 🏙️ </p>
         </div>
       </div>
 
@@ -66,9 +77,10 @@ const InputPage = () => {
           ['英语能力', 'english'],
         ].map(([label, name]) => (
           <div className="form-group" key={name}>
-            <label>{label}：</label>
+            <label htmlFor={name}>{label}：</label>
             <input
               type="text"
+              id={name}
               name={name}
               value={formData[name]}
               onChange={handleChange}
@@ -81,7 +93,7 @@ const InputPage = () => {
         <p>&copy; 2025 Resume. All rights reserved.</p>
         <div style={{ marginTop: '20px' }}>
          <audio controls loop>
-            <source src="/mp3/together.mp3" type="audio/mpeg" />
+            <source src="/new-resume-app/mp3/together.mp3" type="audio/mpeg" />
               您的浏览器不支持音频播放。
           </audio>
         </div>

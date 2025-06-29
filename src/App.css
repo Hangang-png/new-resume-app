@@ -4,6 +4,9 @@
   padding: 2rem;
   font-family: Arial, sans-serif;
   text-align: center; /* ✅ 让标题与按钮居中 */
+
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 /* 1. ✅ 让 resume-header 居中显示 */
@@ -131,5 +134,79 @@ button:hover {
   flex: 1;
   color: #444;
   word-break: break-word;
+}
+audio {
+  max-width: 100%;
+}
+/* 📱 手机适配：小于768px 宽度时优化布局 */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .resume-header {
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .avatar {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .info h2 {
+    font-size: 22px;
+  }
+
+  .info .title {
+    font-size: 18px;
+  }
+
+  .info .motto {
+    font-size: 16px;
+  }
+
+  .info .contact {
+    font-size: 14px;
+  }
+
+  .form {
+    padding: 0 10px;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-group label {
+    width: auto;
+    margin-bottom: 4px;
+  }
+
+  .form-group input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .resume-table {
+    padding: 0 10px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .label {
+    width: auto;
+  }
 }
 

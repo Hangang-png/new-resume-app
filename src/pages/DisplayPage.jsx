@@ -16,14 +16,13 @@ const translateLabel = (key) => {
     about: '自我评价',
     expection: '求职意向',
     english: '英语能力',
-    photo: '头像'
   };
   return map[key] || key;
 };
 
 const DisplayPage = () => {
   const [formData, setFormData] = useState({});
-  const navigate = useNavigate(); // ✅ 放在函数组件内部顶层
+  const navigate = useNavigate();
 
   useEffect(() => {
     const saved = localStorage.getItem('resumeData');
@@ -51,45 +50,58 @@ const DisplayPage = () => {
   };
 
   const handleBack = () => {
-    navigate('/'); // ✅ 返回输入页面
+    navigate('/');
   };
 
   return (
     <div className="container">
       <div id="pdf-content" className="preview">
-         {/* ✅ 预览页面头部：添加在这里 */}
-      <div className="resume-header">
-        <img src="/photo.jpg" alt="头像" className="avatar" />
-        <div className="info">
-          <h2>{formData.name || '未填写姓名'}</h2>
-          <p className="title">.NET 工程师</p>
-          <p className="motto"><em>永远向前</em></p>
-          <p className="contact">
-            📍 {formData.city || '城市未填'} &nbsp;&nbsp;&nbsp; ☎ {formData.phone || '电话未填'}
-          </p>
+        <div className="resume-header" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+          {formData.avatar ? (
+            <img
+              src={formData.avatar}
+              alt="头像"
+              className="avatar"
+              style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #ccc', marginRight: '20px' }}
+            />
+          ) : (
+            <div
+              className="avatar placeholder"
+              style={{ width: '120px', height: '120px', borderRadius: '50%', background: '#f0f0f0', display: 'inline-block', marginRight: '20px' }}
+            />
+          )}
+          <div className="info">
+            <h2>{formData.name || '未填写姓名'}</h2>
+            <p className="title">.NET 工程师</p>
+            <p className="motto"><em>永远向前</em></p>
+            <p className="contact">
+              📍 {formData.city || '城市未填'} &nbsp;&nbsp;&nbsp; ☎ {formData.phone || '电话未填'}
+            </p>
+          </div>
         </div>
-      </div>
         <h2>简历预览</h2>
         <div className="resume-table">
-          {Object.entries(formData).map(([key, value]) => (
-            <div className="row" key={key}>
-              <div className="label">{translateLabel(key)}：</div>
-              <div className="value">{value}</div>
-            </div>
-          ))}
+          {Object.entries(formData)
+            .filter(([key]) => key !== 'avatar')
+            .map(([key, value]) => (
+              <div className="row" key={key} style={{ display: 'flex', marginBottom: '10px' }}>
+                <div className="label" style={{ width: '80px', fontWeight: 'bold' }}>{translateLabel(key)}：</div>
+                <div className="value" style={{ flex: 1 }}>{value}</div>
+              </div>
+            ))}
         </div>
       </div>
-      <footer>        
-        <button onClick={handleBack}>🔙 返回填写简历</button>      
-        <p>&copy; 2025 Resume. All rights reserved.</p>
+      <footer style={{ marginTop: '20px' }}>
+        <button onClick={handleBack} style={{ marginRight: '10px' }}>🔙 返回填写简历</button>
+        <button onClick={handleDownloadPDF}>📄 下载为 PDF</button>
+        <p style={{ marginTop: '10px' }}>&copy; 2025 Resume. All rights reserved.</p>
         <div style={{ marginTop: '20px' }}>
-         <audio controls loop>
-            <source src="/mp3/kingsaybye.mp3" type="audio/mpeg" />
-              您的浏览器不支持音频播放。
+          <audio controls loop>
+            <source src="/new-resume-app/mp3/kingsaybye.mp3" type="audio/mpeg" />
+            您的浏览器不支持音频播放。
           </audio>
         </div>
-        <button onClick={handleDownloadPDF}> 📄 下载为  PDF </button>
-	    </footer>
+      </footer>
     </div>
   );
 };
